@@ -3,7 +3,7 @@ import frame from "../../assets/Frame.svg";
 import vector1 from "../../assets/Vector (1).svg";
 import vector3 from "../../assets/Vector (3).svg";
 
-export default function AddBooking({ onAddNewBooking }) {
+export default function AddBooking({ onAddNewBooking, bookings }) {
   const [formData, setFormData] = useState({
     id: Date.now(),
     from: "",
@@ -147,7 +147,14 @@ export default function AddBooking({ onAddNewBooking }) {
           </div>
         </div>
 
-        <button className="addCity" type="submit" id="lws-addCity">
+        <button
+          className={`addCity ${
+            bookings.length >= 3 ? "cursor-not-allowed bg-gray-400" : ""
+          } `}
+          disabled={bookings.length >= 3}
+          type="submit"
+          id="lws-addCity"
+        >
           <svg
             width="15px"
             height="15px"

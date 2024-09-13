@@ -13,7 +13,9 @@ export default function BookingList() {
   const dispatch = useDispatch();
 
   function handleAddNewBooking(formData) {
-    dispatch(addBooking(formData));
+    if (bookings.length < 3) {
+      dispatch(addBooking(formData));
+    }
   }
 
   function handleDeleteBooking(id) {
@@ -26,7 +28,7 @@ export default function BookingList() {
         {/* Input Data  */}
         <div className="mt-[160px] mx-4 md:mt-[160px] relative">
           <div className="bg-white rounded-md max-w-6xl w-full mx-auto">
-            <AddBooking onAddNewBooking={handleAddNewBooking} />
+            <AddBooking onAddNewBooking={handleAddNewBooking} bookings={bookings} />
           </div>
         </div>
 
@@ -48,7 +50,6 @@ export default function BookingList() {
               id="lws-previewBooked"
             >
               {/* Row   */}
-
               {bookings.map((booking) => (
                 <BookingItem
                   key={booking.id}
